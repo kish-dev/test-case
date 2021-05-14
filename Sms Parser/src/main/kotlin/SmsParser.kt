@@ -1,3 +1,14 @@
+fun getCountsOfDigits(value: Int): Int {
+    var number = value
+    var count = if (number == 0) 1 else 0
+    while (number != 0) {
+        ++count
+        number /= 10
+    }
+    return count
+}
+
+//первый вариант
 fun smsParser(input: String, maxLength: Int): MutableList<String> {
     var inputSms = input.replace("\\s+".toRegex(), " ")
     var stringList = mutableListOf<String>()
@@ -28,7 +39,7 @@ fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountSt
     for (i in inputStringList.indices) {
         val currentMaxStringLength = maxStringLength - lettersOfCountString - getCountsOfDigits(counter) - 2
 
-        if(string.isNotEmpty() && string.length + 1 <= currentMaxStringLength) {
+        if (string.isNotEmpty() && string.length + 1 <= currentMaxStringLength) {
             string.append(' ')
             withSpace = false
         }
@@ -37,14 +48,12 @@ fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountSt
             string.append(inputStringList[i])
             addedIndex = i
             withSpace = true
-        } else if(string.length + inputStringList[i].length == currentMaxStringLength) {
+        } else if (string.length + inputStringList[i].length == currentMaxStringLength) {
             string.append(inputStringList[i])
             addedIndex = i
             withSpace = string.last() != ' '
-
-        }
-        else {
-            if(withSpace) {
+        } else {
+            if (withSpace) {
                 string.append(" $counter/")
                 withSpace = false
             } else {
@@ -53,21 +62,18 @@ fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountSt
             }
             outputStringList.add(string)
             ++counter
-            if(addedIndex != i) {
+            if (addedIndex != i) {
                 string = StringBuilder(inputStringList[i])
                 withSpace = true
             }
         }
-
     }
 
-    if(addedIndex < inputStringList.size) {
-        if(withSpace) {
+    if (addedIndex < inputStringList.size) {
+        if (withSpace) {
             string.append(" $counter/")
-            withSpace = false
         } else {
             string.append("$counter/")
-            withSpace = false
         }
         outputStringList.add(StringBuilder("$string"))
     }
@@ -83,6 +89,8 @@ fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountSt
     return outputStringList
 }
 
+
+//второй вариант
 fun smsParserVariantTwo(inputSms: String, maxLength: Int): MutableList<String> {
     var stringList = mutableListOf<String>()
     val inputLength = inputSms.length
@@ -98,10 +106,9 @@ fun smsParserVariantTwo(inputSms: String, maxLength: Int): MutableList<String> {
         }
     }
     return stringList
-
 }
 
-fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString: Int) : List<StringBuilder> {
+fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString: Int): List<StringBuilder> {
     var currentWord = StringBuilder()
     var stringBuilder = StringBuilder()
     val outputStringList = mutableListOf<StringBuilder>()
@@ -111,11 +118,11 @@ fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString
 
         val char = inputString[i]
 
-        if(char != ' ') {
+        if (char != ' ') {
             currentWord.append(char)
         } else {
-            if(currentWord.isNotEmpty()) {
-                if(stringBuilder.length + currentWord.length <= currentMaxStringLength){
+            if (currentWord.isNotEmpty()) {
+                if (stringBuilder.length + currentWord.length <= currentMaxStringLength) {
 
                     stringBuilder.append(currentWord)
                     currentWord = StringBuilder()
@@ -128,7 +135,7 @@ fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString
                     currentWord = StringBuilder()
                 }
             }
-            if(stringBuilder.length + 1 <= currentMaxStringLength) {
+            if (stringBuilder.length + 1 <= currentMaxStringLength) {
                 stringBuilder.append(" ")
             } else {
                 stringBuilder.append(" $counter/")
@@ -140,8 +147,8 @@ fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString
     }
     val currentMaxStringLength = maxStringLength - lettersOfCountString - getCountsOfDigits(counter) - 2
 
-    if(currentWord.isNotEmpty()) {
-        if(stringBuilder.length + currentWord.length <= currentMaxStringLength){
+    if (currentWord.isNotEmpty()) {
+        if (stringBuilder.length + currentWord.length <= currentMaxStringLength) {
 
             stringBuilder.append(currentWord)
             outputStringList.add(stringBuilder)
@@ -154,8 +161,8 @@ fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString
             stringBuilder.append(" $counter/")
             outputStringList.add(stringBuilder)
         }
-    } else  {
-        if(stringBuilder.isNotEmpty()) {
+    } else {
+        if (stringBuilder.isNotEmpty()) {
             stringBuilder.append(" $counter/")
             outputStringList.add(stringBuilder)
         }
@@ -173,12 +180,3 @@ fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString
     return outputStringList
 }
 
-fun getCountsOfDigits(value: Int): Int {
-    var number = value
-    var count = if (number == 0) 1 else 0
-    while (number != 0) {
-        ++count
-        number /= 10
-    }
-    return count
-}

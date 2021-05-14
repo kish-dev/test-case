@@ -34,28 +34,26 @@ class Test {
             stringBuilder.append("a ")
         }
         val correctStringList = mutableListOf<String>()
-        //5*3
-        //5*2
+
         for(i in 1..9) {
             correctStringList.add("a a a $i/1500")
         }
-        //89*2
+
         for (i in 10..99) {
             correctStringList.add("a a $i/1500")
         }
-        //
+
         for(i in 100..999) {
             correctStringList.add("a a $i/1500")
         }
+
         for (i in 1000..1499) {
             correctStringList.add("a $i/1500")
-
         }
+
         correctStringList.add("a 1500/1500")
 
-
         val stringList = smsParser(String(stringBuilder), 12)
-        println(stringBuilder)
         assertEquals(stringList, correctStringList)
     }
 
@@ -66,16 +64,15 @@ class Test {
             stringBuilder.append("a   ")
         }
         val correctStringList = mutableListOf<String>()
-        //5*3
-        //5*2
+
         for(i in 1..9) {
             correctStringList.add("a a a $i/1500")
         }
-        //89*2
+
         for (i in 10..99) {
             correctStringList.add("a a $i/1500")
         }
-        //
+
         for(i in 100..999) {
             correctStringList.add("a a $i/1500")
         }
@@ -87,8 +84,6 @@ class Test {
 
 
         val stringList = smsParser(String(stringBuilder), 12)
-        println(stringBuilder)
         assertEquals(stringList, correctStringList)
     }
-
 }

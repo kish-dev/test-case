@@ -35,8 +35,7 @@ class TestVariantTwo {
             stringBuilder.append("a ")
         }
         val correctStringList = mutableListOf<String>()
-        //5*3
-        //5*2
+
         var j = 1
         while (j < 8) {
             correctStringList.add("a a a $j/1500")
@@ -46,12 +45,10 @@ class TestVariantTwo {
         }
         correctStringList.add("a a a $j/1500")
 
-
-        //89*2
         for (i in 10..99) {
             correctStringList.add(" a a $i/1500")
         }
-        //
+
         var k = 100
         while (k < 999) {
 
@@ -66,10 +63,7 @@ class TestVariantTwo {
         }
         correctStringList.add("  1500/1500")
 
-
-        //a a a 1/1800
         val stringList = smsParserVariantTwo(String(stringBuilder), 12)
-        println(stringBuilder)
         assertEquals(stringList, correctStringList)
     }
 
@@ -98,7 +92,6 @@ class TestVariantTwo {
             ++j
         }
 
-        //
         var k = 100
         while (k < 996) {
 
@@ -159,8 +152,6 @@ class TestVariantTwo {
 
 
         val stringList = smsParserVariantTwo(String(stringBuilder), 12)
-        println(stringList.toString())
         assertEquals(stringList, correctStringList)
     }
-
 }
