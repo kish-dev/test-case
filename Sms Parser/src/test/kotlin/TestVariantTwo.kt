@@ -34,7 +34,7 @@ class TestVariantTwo {
         for (i in 0..2052) {
             stringBuilder.append("a ")
         }
-        val correctStringList = mutableListOf<String>()
+        val correctStringList = arrayListOf<String>()
 
         var j = 1
         while (j < 8) {
@@ -73,7 +73,7 @@ class TestVariantTwo {
         for (i in 0..821) {
             stringBuilder.append("a    ")
         }
-        val correctStringList = mutableListOf<String>()
+        val correctStringList = arrayListOf<String>()
         for (i in 1..9) {
             correctStringList.add("a     $i/1502")
         }

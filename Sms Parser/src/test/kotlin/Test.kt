@@ -33,7 +33,7 @@ class Test {
         for (i in 0..2507) {
             stringBuilder.append("a ")
         }
-        val correctStringList = mutableListOf<String>()
+        val correctStringList = arrayListOf<String>()
 
         for(i in 1..9) {
             correctStringList.add("a a a $i/1500")
@@ -63,7 +63,7 @@ class Test {
         for (i in 0..2507) {
             stringBuilder.append("a   ")
         }
-        val correctStringList = mutableListOf<String>()
+        val correctStringList = arrayListOf<String>()
 
         for(i in 1..9) {
             correctStringList.add("a a a $i/1500")

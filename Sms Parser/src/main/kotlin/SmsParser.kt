@@ -21,7 +21,7 @@ fun smsParser(input: String, maxLength: Int): MutableList<String> {
         stringList = inputSms.split(" ") as MutableList<String>
 
         var result = parser(stringList, maxLength, getCountsOfDigits(currentCount))
-        stringList = mutableListOf()
+        stringList = arrayListOf()
         for (i in result.indices) {
             stringList.add(String(result[i]))
         }
@@ -30,9 +30,9 @@ fun smsParser(input: String, maxLength: Int): MutableList<String> {
 
 }
 
-fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountString: Int): List<StringBuilder> {
+fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountString: Int): ArrayList<StringBuilder> {
     var string: StringBuilder = StringBuilder()
-    val outputStringList = mutableListOf<StringBuilder>()
+    val outputStringList = arrayListOf<StringBuilder>()
     var counter = 1
     var addedIndex = 0
     var withSpace = false
@@ -100,7 +100,7 @@ fun smsParserVariantTwo(inputSms: String, maxLength: Int): MutableList<String> {
         var currentCount: Int = inputLength / maxLength
 
         var result = stringParser(inputSms, maxLength, getCountsOfDigits(currentCount))
-        stringList = mutableListOf()
+        stringList = arrayListOf()
         for (i in result.indices) {
             stringList.add(String(result[i]))
         }
@@ -108,10 +108,10 @@ fun smsParserVariantTwo(inputSms: String, maxLength: Int): MutableList<String> {
     return stringList
 }
 
-fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString: Int): List<StringBuilder> {
+fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString: Int): ArrayList<StringBuilder> {
     var currentWord = StringBuilder()
     var stringBuilder = StringBuilder()
-    val outputStringList = mutableListOf<StringBuilder>()
+    val outputStringList = arrayListOf<StringBuilder>()
     var counter = 1
     for (i in inputString.indices) {
         val currentMaxStringLength = maxStringLength - lettersOfCountString - getCountsOfDigits(counter) - 2
