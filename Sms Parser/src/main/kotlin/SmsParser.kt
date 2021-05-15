@@ -9,25 +9,24 @@ fun getCountsOfDigits(value: Int): Int {
 }
 
 //первый вариант
-fun smsParser(input: String, maxLength: Int): MutableList<String> {
-    var inputSms = input.replace("\\s+".toRegex(), " ")
-    var stringList = mutableListOf<String>()
+fun smsParser(input: String, maxLength: Int): ArrayList<String> {
+    val inputSms = input.replace("\\s+".toRegex(), " ")
+    var resultStringList = arrayListOf<String>()
     val inputLength = inputSms.length
     if (inputLength <= maxLength) {
-        stringList.add(inputSms)
+        resultStringList.add(inputSms)
     } else {
-        var currentCount: Int = inputLength / maxLength
+        val currentCount: Int = inputLength / maxLength
 
-        stringList = inputSms.split(" ") as MutableList<String>
+        resultStringList = inputSms.split(" ") as ArrayList<String>
 
-        var result = parser(stringList, maxLength, getCountsOfDigits(currentCount))
-        stringList = arrayListOf()
+        val result = parser(resultStringList, maxLength, getCountsOfDigits(currentCount))
+        resultStringList = arrayListOf()
         for (i in result.indices) {
-            stringList.add(String(result[i]))
+            resultStringList.add(String(result[i]))
         }
     }
-    return stringList
-
+    return resultStringList
 }
 
 fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountString: Int): ArrayList<StringBuilder> {
@@ -91,21 +90,20 @@ fun parser(inputStringList: List<String>, maxStringLength: Int, lettersOfCountSt
 
 
 //второй вариант
-fun smsParserVariantTwo(inputSms: String, maxLength: Int): MutableList<String> {
-    var stringList = mutableListOf<String>()
+fun smsParserVariantTwo(inputSms: String, maxLength: Int): ArrayList<String> {
     val inputLength = inputSms.length
+    val resultStringList = arrayListOf<String>()
     if (inputLength <= maxLength) {
-        stringList.add(inputSms)
+        resultStringList.add(inputSms)
     } else {
-        var currentCount: Int = inputLength / maxLength
+        val currentCount: Int = inputLength / maxLength
 
-        var result = stringParser(inputSms, maxLength, getCountsOfDigits(currentCount))
-        stringList = arrayListOf()
+        val result = stringParser(inputSms, maxLength, getCountsOfDigits(currentCount))
         for (i in result.indices) {
-            stringList.add(String(result[i]))
+            resultStringList.add(String(result[i]))
         }
     }
-    return stringList
+    return resultStringList
 }
 
 fun stringParser(inputString: String, maxStringLength: Int, lettersOfCountString: Int): ArrayList<StringBuilder> {
